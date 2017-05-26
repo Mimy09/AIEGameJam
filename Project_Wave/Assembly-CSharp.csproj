@@ -49,6 +49,8 @@
      <Compile Include="Assets\src\core\SaveLoad.cs" />
      <Compile Include="Assets\src\core\StateManager\GameStateManager.cs" />
      <Compile Include="Assets\src\core\StateManager\State.cs" />
+     <Compile Include="Assets\src\player\Player.cs" />
+     <Compile Include="Assets\src\player\PlayerMovment.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
