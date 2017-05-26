@@ -23,6 +23,8 @@ namespace GameState {
 		Called when state doesn't change*/
 		virtual public void Update (){}
 
+		virtual public void GUIUpdate (){}
+
 		/* ---- GetState ----
 		Returns the state as an enum*/
 		virtual public GAME_STATE GetSate(){ return GAME_STATE._NULL_; }
@@ -32,22 +34,40 @@ namespace GameState {
 
 
 	public class InitState : State{
-		InitState(){  }
-		public virtual GAME_STATE GetSate(){ return GAME_STATE.InitState; }
+		public InitState(){}
+		public override GAME_STATE GetSate(){ return GAME_STATE.InitState; }
+
+		public override void OnBegin (){
+			
+		}
+
 	}
+
+
 
 	public class MenuState : State{
-		MenuState(){}
-		public virtual GAME_STATE GetSate(){ return GAME_STATE.MenuState; }
+		public MenuState(){}
+		public override GAME_STATE GetSate(){ return GAME_STATE.MenuState; }
+
+		public override void GUIUpdate (){
+			if (GUI.Button(new Rect(0, 0, 100, 100), "START")){
+				Debug.Log ("MENU");
+				GameStateManager.SetState (new GameRunningState ());
+			}
+		}
 	}
+
+
 
 	public class GameRunningState : State{
-		GameRunningState(){}
-		public virtual GAME_STATE GetSate(){ return GAME_STATE.GameRunningState; }
+		public GameRunningState(){}
+		public override GAME_STATE GetSate(){ return GAME_STATE.GameRunningState; }
 	}
 
+
+
 	public class PauesState : State{
-		PauesState(){}
-		public virtual GAME_STATE GetSate(){ return GAME_STATE.PauesState; }
+		public PauesState(){}
+		public override GAME_STATE GetSate(){ return GAME_STATE.PauesState; }
 	}
 }

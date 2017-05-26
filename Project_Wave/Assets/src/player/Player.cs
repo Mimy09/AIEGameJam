@@ -10,15 +10,7 @@ public class Player : MonoBehaviour {
 		m_pm = this.GetComponent<PlayerMovment> ();
 	}
 
-	void Update () {
-		//transform.Translate (Vector2.right * 2 * Time.deltaTime);
-		//this.transform.rotation = m_pm.m_rotation;
-
-		//int PlayerRotation = this.transform.rotation.z - 90;
-		//int sceneSpeed = PlayerRotation / 90;
-
-
-	}
+	void Update () { }
 
 	void OnTriggerEnter2D(Collider2D c){
 		if (c.tag == "Enemy") {

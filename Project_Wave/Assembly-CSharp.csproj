@@ -46,6 +46,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\generation\IslandComponent.cs" />
+     <Compile Include="Assets\generation\IslandGenerator.cs" />
      <Compile Include="Assets\src\core\SaveLoad.cs" />
      <Compile Include="Assets\src\core\StateManager\GameStateManager.cs" />
      <Compile Include="Assets\src\core\StateManager\State.cs" />
