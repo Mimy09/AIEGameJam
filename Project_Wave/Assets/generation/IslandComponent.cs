@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class IslandComponent : MonoBehaviour {
 	void Update () {
-		if (this.transform.position.x + this.GetComponentInParent<Transform>().position.x < -60) {
+		if (this.transform.position.x + this.GetComponentInParent<Transform>().position.x < -100) {
 
 			WorldGenerator worldGen = this.GetComponentInParent<WorldGenerator> () as WorldGenerator;
 			worldGen.DeleteChunk (this.gameObject);
