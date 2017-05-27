@@ -5,10 +5,11 @@ using UnityEngine;
 public class PlayerMovment : MonoBehaviour {
 	public GameObject Scene;
 
-	public Vector3 vec_Scene;
-	public Quaternion m_rotation;
+	private Vector3 vec_Scene;
+	private Quaternion m_rotation;
 
 	public float speed = 1;
+	private float plySpeed;
 
 	void Awake() {
 		m_rotation = transform.rotation;
@@ -16,6 +17,7 @@ public class PlayerMovment : MonoBehaviour {
 
 	void Update () {
 		if (GameStateManager.GetState () == GameState.GAME_STATE.GameRunningState) {
+			plySpeed = this.GetComponent<Player> ().m_playerStats.m_speed;
 			// Sets the players y pos
 			transform.position += new Vector3 (0, transform.right.y * Time.deltaTime * 0.5f * speed, 0);
 			// Sets the scenes x pos to move right to left on screen

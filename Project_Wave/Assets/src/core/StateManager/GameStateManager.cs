@@ -19,6 +19,7 @@ public class GameStateManager : MonoBehaviour{
 			m_currentState.OnBegin ();
 		}// If state is the same as current state, update current state
 		else {
+			m_currentState = state;
 			m_currentState.Update ();
 		}
 	}
