@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using GameState;
+
 
 [System.Serializable]
 public struct PlayerStats{
@@ -30,12 +32,16 @@ public class Player : MonoBehaviour {
 		if (GameStateManager.GetState () == GameState.GAME_STATE.GameRunningState) {
 			m_playerStats.m_food -= 1 * Time.deltaTime;
 			GameStateManager.SetState (new GameRunningState (m_playerStats));
+
+			if (m_playerStats.m_health <= 0)
+				SceneManager.LoadScene ("Test");
 		}
 	}
 
 	void OnTriggerEnter2D(Collider2D c){
 		if (c.tag == "Island") {
-			transform.Rotate (new Vector3 (0, 0, 180));
+			transform.Rotate (new Vector3(0, 0, 180));
+
 			GameStateManager.SetState (new IslandGUIState (c.GetComponent<Island>().m_food, c.GetComponent<Island>().m_parts));
 
 			m_playerStats.m_food += c.GetComponent<Island>().m_food;

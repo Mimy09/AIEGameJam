@@ -48,7 +48,7 @@ public class WorldGenerator : MonoBehaviour {
 		//if (chunkIndex > 0) offset.x = this.chunkObjects [chunkIndex - 1].transform.position.x + chunkOffset.x;
 		//this.chunkObjects.Add(GameObject.Instantiate(this.chunkPrefab, transform.position + offset, new Quaternion(), this.transform));
 
-		this.chunkObjects.Add(GameObject.Instantiate(this.chunkPrefab, new Vector3(50 * chunkIndex + 25, 0, 0), new Quaternion(), this.transform));
+		this.chunkObjects.Add(GameObject.Instantiate(this.chunkPrefab, new Vector3(50 * chunkIndex + 30, 0, 0), new Quaternion(), this.transform));
 		// generate the objects insde the chunk
 		GenerateObjects(this.chunkObjects[chunkIndex]);
 	}

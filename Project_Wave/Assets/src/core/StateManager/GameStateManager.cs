@@ -6,6 +6,7 @@ using GameState;
 
 
 public class GameStateManager : MonoBehaviour{
+	public Material m_water;
 	// Stores the current state as a static for all round access.
 	public static State m_currentState;
 	public static void SetState(State state){
@@ -35,6 +36,17 @@ public class GameStateManager : MonoBehaviour{
 		SetState (new MenuState ());
 	}
 	void Update(){
+
+		if (GetState () == GAME_STATE.GameRunningState) {
+			m_water.mainTextureOffset = new Vector2 (0.005f, 0) + m_water.mainTextureOffset;
+
+			Vector2 bOff = m_water.GetTextureOffset("_BumpMap");
+			bOff.x += 0.01f;
+			bOff.y += 0.0075f;
+			m_water.SetTextureOffset("_BumpMap", bOff);
+
+		}
+
 		// Update the current state
 		m_currentState.Update ();
 	}

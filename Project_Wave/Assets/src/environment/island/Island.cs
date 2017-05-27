@@ -27,7 +27,7 @@ public class Island : MonoBehaviour {
 			}
 		}
 		if (c.tag == "Enemy") {
-			if (c.transform.position.x > this.transform.position.x) {
+			//if (c.transform.position.x > this.transform.position.x) {
 				m_food -= c.GetComponent<Enemy> ().GetDamage ();
 				m_parts--;
 				if (m_food < 0)
@@ -35,7 +35,7 @@ public class Island : MonoBehaviour {
 				if (m_parts < 0)
 					m_parts = 0;
 				Destroy (c.gameObject);
-			}
+			//}
 		}
 
 	}
