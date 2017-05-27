@@ -1,11 +1,10 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\src\player\Player.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\generation\IslandGenerator.cs">
     <Files>
-      <File FileName="Assets\src\player\Player.cs" Line="3" Column="19" />
-      <File FileName="Assets\src\player\PlayerMovment.cs" Line="13" Column="16" />
-      <File FileName="Assets\src\core\StateManager\State.cs" Line="55" Column="52" />
-      <File FileName="Assets\src\core\StateManager\GameStateManager.cs" Line="14" Column="84" />
+      <File FileName="Assets\generation\world\WorldGenerator.cs" Line="38" Column="20" />
+      <File FileName="Assets\generation\world\WorldObject.cs" Line="12" Column="16" />
+      <File FileName="Assets\generation\IslandGenerator.cs" Line="27" Column="34" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -8,7 +8,7 @@ public class IslandGenerator : MonoBehaviour {
 	public int maxIslands;
 	private List<GameObject> SceneObjects = new List<GameObject>();
 	public List<GameObject> Objects;
-
+	public int x;
 	void Awake()
 	{
 		int rnd = Random.Range (minIslands, maxIslands);
@@ -28,7 +28,7 @@ public class IslandGenerator : MonoBehaviour {
 			//int index = (int)Random.Range(0, islands.Count - 1);
 			//int index = 0;
 			// create new island object
-			GameObject obj = Instantiate(SceneObjects[i], new Vector3(tx, ty, 0), new Quaternion(), this.transform);
+			GameObject obj = Instantiate(SceneObjects[i], new Vector3(tx + transform.position.x, ty, 0), new Quaternion(), this.transform);
 		}	
 	}
 
