@@ -46,13 +46,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\generation\IslandComponent.cs" />
+     <Compile Include="Assets\generation\IslandGenerator.cs" />
+     <Compile Include="Assets\generation\world\WorldGenerator.cs" />
+     <Compile Include="Assets\generation\world\WorldObject.cs" />
      <Compile Include="Assets\src\core\SaveLoad.cs" />
      <Compile Include="Assets\src\core\StateManager\GameStateManager.cs" />
      <Compile Include="Assets\src\core\StateManager\State.cs" />
      <Compile Include="Assets\src\enemy\Enemy.cs" />
      <Compile Include="Assets\src\environment\island\Island.cs" />
-     <Compile Include="Assets\src\generation\IslandComponent.cs" />
-     <Compile Include="Assets\src\generation\IslandGenerator.cs" />
      <Compile Include="Assets\src\player\Player.cs" />
      <Compile Include="Assets\src\player\PlayerMovment.cs" />
  <Reference Include="UnityEngine.UI">
