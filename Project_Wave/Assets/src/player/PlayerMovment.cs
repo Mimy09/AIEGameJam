@@ -19,9 +19,9 @@ public class PlayerMovment : MonoBehaviour {
 		if (GameStateManager.GetState () == GameState.GAME_STATE.GameRunningState) {
 			plySpeed = this.GetComponent<Player> ().m_playerStats.m_speed;
 			// Sets the players y pos
-			transform.position += new Vector3 (0, transform.right.y * Time.deltaTime * 0.5f * speed, 0);
+			transform.position += new Vector3 (0, transform.right.y * Time.deltaTime * 0.5f * speed * plySpeed, 0);
 			// Sets the scenes x pos to move right to left on screen
-			Scene.transform.Translate (new Vector3 (-transform.right.x, 0, 0) * Time.deltaTime * 0.5f * speed);
+			Scene.transform.Translate (new Vector3 (-transform.right.x, 0, 0) * Time.deltaTime * 0.5f * speed * plySpeed);
 
 			// Turns the player left
 			if (Input.GetKey (KeyCode.A))

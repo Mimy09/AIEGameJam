@@ -9,7 +9,7 @@ public class Island : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		m_food = Random.value * 20;
+		m_food = Random.value * 40;
 		m_parts = Mathf.RoundToInt( Random.value * 10);
 	}
 	

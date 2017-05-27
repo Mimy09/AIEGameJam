@@ -7,6 +7,7 @@ using GameState;
 
 public class GameStateManager : MonoBehaviour{
 	public Material m_water;
+
 	// Stores the current state as a static for all round access.
 	public static State m_currentState;
 	public static void SetState(State state){
