@@ -41,6 +41,11 @@ public class PlayerMovment : MonoBehaviour {
 			else {
 				speed = Mathf.Lerp (speed, 1, Time.deltaTime / 2);
 			}
+
+			Vector3 pos = transform.position;
+			if (pos.y > 10.65f) pos.y = -10.3f;
+			if (pos.y <-10.35f) pos.y =  10.6f;
+			transform.position = pos;
 		}
 	}
 }
