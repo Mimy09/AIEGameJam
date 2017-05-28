@@ -68,6 +68,8 @@ namespace GameState {
 
 		private GUIStyle style;
 		public PlayerStats m_ps;
+		private GUISkin skin;
+		private Texture texture;
 
 		public override void Update (){
 			if (Input.GetKeyDown (KeyCode.E)) {
@@ -79,14 +81,43 @@ namespace GameState {
 			style = new GUIStyle ();
 			style.normal.textColor = Color.black;
 			style.fontSize = 24;
+			texture = Resources.Load("textures/blank") as Texture2D;
 		}
 
 		public override void GUIUpdate (){
-			GUI.DrawTexture(new Rect (0, 0, 170, 150), Resources.Load("textures/UI/Board") as Texture2D, ScaleMode.StretchToFill);
-			GUI.Label (new Rect (15, 10, 200, 100), "Health = " + (int)m_ps.m_health, style);
+
+			GUI.skin = skin;
+
+
+			GUI.color = new Color(1, 1, 1, 1);
+			GUI.DrawTexture(new Rect (20, 5, 200, 30), Resources.Load("textures/UI/progressbar") as Texture2D, ScaleMode.StretchToFill);
+			GUI.DrawTexture(new Rect (20, 45, 200, 30), Resources.Load("textures/UI/progressbar") as Texture2D, ScaleMode.StretchToFill);
+			GUI.DrawTexture(new Rect (20, 85, 200, 30), Resources.Load("textures/UI/progressbar") as Texture2D, ScaleMode.StretchToFill);
+			GUI.DrawTexture(new Rect (20, 125, 200, 30), Resources.Load("textures/UI/progressbar") as Texture2D, ScaleMode.StretchToFill);
+
+			/*GUI.Label (new Rect (15, 10, 200, 100), "Health = " + (int)m_ps.m_health, style);
 			GUI.Label (new Rect (15, 40, 200, 100), "Armor = " + (int)m_ps.m_armor, style);
 			GUI.Label (new Rect (15, 70, 200, 100), "Speed = " + m_ps.m_speed, style);
-			GUI.Label (new Rect (15, 100, 200, 100), "Food = " + (int)m_ps.m_food, style);
+			GUI.Label (new Rect (15, 100, 200, 100), "Food = " + (int)m_ps.m_food, style);*/
+
+			// Health
+			GUI.color = new Color(1 - 1.0f / 100.0f * (float)m_ps.m_health, 1.0f / 100.0f * (float)m_ps.m_health, 0, 0.6f);
+			GUI.DrawTexture(new Rect(60, 10, 150.0f / 100.0f * m_ps.m_health, 20), texture, ScaleMode.StretchToFill , true, 10.0F);
+
+			// Armor
+			GUI.color = new Color(1 - 1.0f / 10.0f * (float)m_ps.m_armor, 1.0f / 10.0f * (float)m_ps.m_armor, 0, 0.6f);
+			GUI.DrawTexture(new Rect(60, 50, 150.0f / 10.0f * m_ps.m_armor, 20), texture, ScaleMode.StretchToFill , true, 10.0F);
+
+			// Speed
+			GUI.color = new Color(1, 1, 1, 0.6f);
+			//GUI.DrawTexture(new Rect(60, 50, 150.0f / 10.0f * m_ps.m_armor, 20), texture, ScaleMode.StretchToFill , true, 10.0F);
+			//GUI.DrawTexture(new Rect(60, 50, 150.0f / 10.0f * m_ps.m_armor, 20), texture, ScaleMode.StretchToFill , true, 10.0F);
+
+			GUI.Label (new Rect (60, 90, 200, 100), "Food = " + (int)m_ps.m_food, style);
+			//GUI.Label (new Rect (15, 100, 200, 100), "Food = " + (int)m_ps.m_food, style);*/
+
+			GUI.color = new Color(1, 1, 1, 1);
+			GUI.DrawTexture(new Rect(30, 10, 20, 20), Resources.Load("textures/UI/health") as Texture2D, ScaleMode.StretchToFill , true, 10.0F);
 
 			if (GUI.Button(new Rect(Screen.width - 100, Screen.height - 100, 100, 100), "Upgrade")){
 				GameStateManager.SetState (new PlayerUpgradeState ());
