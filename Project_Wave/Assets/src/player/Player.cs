@@ -68,10 +68,11 @@ public class Player : MonoBehaviour {
 
 	void OnGUI(){
 		GUI.skin.label.fontSize = 24;
+		GUI.skin.label.normal.textColor = Color.black;
 		if (GameStateManager.GetState () == GameState.GAME_STATE.GameRunningState) {
 			if (itemTimer > 0) {
-				GUI.Box (new Rect (Screen.width / 2 - 100, Screen.height - 400, 200, 70), "");
-				GUI.Label (new Rect (Screen.width / 2 - 100, Screen.height - 400, 200, 70), "+Food (" + (int)m_islandStats.m_food + ")\n+Parts(" + (int)m_islandStats.m_parts + ")");
+				GUI.DrawTexture(new Rect (Screen.width / 2 - 100, Screen.height - 400, 200, 70), Resources.Load("textures/UI/Board") as Texture2D, ScaleMode.StretchToFill);
+				GUI.Label (new Rect (Screen.width / 2 - 60, Screen.height - 400, 200, 70), "+Food (" + (int)m_islandStats.m_food + ")\n+Parts(" + (int)m_islandStats.m_parts + ")");
 			}
 		}
 		if (GameStateManager.GetState () == GameState.GAME_STATE.PlayerUpgradeState) {
@@ -124,9 +125,14 @@ public class Player : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D c){
 		if (c.tag == "Island") {
-			transform.Rotate (new Vector3(0, 0, 180));
+			Vector3 normal = Vector3.Normalize(transform.position - c.transform.position);
+			Vector3 reflect = Vector3.Reflect (transform.right, normal);
+			float angle = Mathf.Atan2 (reflect.y, reflect.x) * Mathf.Rad2Deg;
+			transform.rotation = Quaternion.AngleAxis (angle, Vector3.forward);
 
-			GameStateManager.SetState (new IslandGUIState (c.GetComponent<Island>().m_food, c.GetComponent<Island>().m_parts));
+			//transform.Rotate (new Vector3(0, 0, 180));
+
+			GameStateManager.SetState (new IslandGUIState (c.GetComponent<Island>().m_food, c.GetComponent<Island>().m_parts, m_playerStats.m_speed));
 
 			m_playerStats.m_food += c.GetComponent<Island>().m_food;
 			m_playerStats.m_parts += c.GetComponent<Island>().m_parts;

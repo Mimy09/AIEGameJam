@@ -23,7 +23,7 @@ public class IslandGenerator : MonoBehaviour {
 		{
 			// generate random positions
 			float tx = (Random.value - 0.5f) * 50;
-			float ty = (Random.value - 0.5f) * 10;
+			float ty = (Random.value - 0.5f) * 20;
 			// select model to instantiate
 			//int index = (int)Random.Range(0, islands.Count - 1);
 			//int index = 0;

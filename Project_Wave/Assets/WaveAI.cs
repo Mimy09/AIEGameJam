@@ -24,7 +24,7 @@ public class WaveAI : MonoBehaviour {
 		this.playerScript = player.GetComponent<PlayerMovment>() as PlayerMovment;
 	}
 
-	void LateUpdate () {
+	void FixedUpdate () {
 		GAME_STATE stage = GameStateManager.GetState ();
 		switch (stage)
 		{
