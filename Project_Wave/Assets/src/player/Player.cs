@@ -32,7 +32,7 @@ public class Player : MonoBehaviour {
 		m_playerStats.m_health = 100;
 		m_playerStats.m_food = 100;
 		m_playerStats.m_armor = 10;
-		m_playerStats.m_speed = 1;
+		m_playerStats.m_speed = 2;
 		m_playerStats.m_parts = 0;
 
 		m_plyUpgrades.m_health = 1;
@@ -71,7 +71,7 @@ public class Player : MonoBehaviour {
 		GUI.skin.label.normal.textColor = Color.black;
 		if (GameStateManager.GetState () == GameState.GAME_STATE.GameRunningState) {
 			if (itemTimer > 0) {
-				GUI.DrawTexture(new Rect (Screen.width / 2 - 100, Screen.height - 400, 200, 70), Resources.Load("textures/UI/Board") as Texture2D, ScaleMode.StretchToFill);
+				GUI.DrawTexture(new Rect (Screen.width / 2 - 100, Screen.height - 400, 200, 70), Resources.Load("textures/UI/islandseconds") as Texture2D, ScaleMode.StretchToFill);
 				GUI.Label (new Rect (Screen.width / 2 - 60, Screen.height - 400, 200, 70), "+Food (" + (int)m_islandStats.m_food + ")\n+Parts(" + (int)m_islandStats.m_parts + ")");
 			}
 		}

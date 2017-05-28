@@ -7,13 +7,13 @@ using GameState;
 public class WaveAI : MonoBehaviour {
 
 	// Public variables
-	public float speed = 0.001f;
+	public float speed = 0.00001f;
 	public GameObject player;
 	// Private variables
 	private float initSpeed;
 	private Vector3 initPosition;
 	private Transform playerTransform;
-	private PlayerMovment playerScript;
+	private Player playerScript;
 
 	void Awake()
 	{
@@ -21,7 +21,7 @@ public class WaveAI : MonoBehaviour {
 		this.initSpeed = this.speed;
 		this.initPosition = this.transform.position;
 		this.playerTransform = player.transform;
-		this.playerScript = player.GetComponent<PlayerMovment>() as PlayerMovment;
+		this.playerScript = player.GetComponent<Player>() as Player;
 	}
 
 	void FixedUpdate () {
@@ -29,11 +29,11 @@ public class WaveAI : MonoBehaviour {
 		switch (stage)
 		{
 			case GAME_STATE.IslandGUIState:
-				speed += 0.0001f;
+				speed += 0.0003f;
 				transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
 				break;
 			case GAME_STATE.GameRunningState:
-				speed += 0.0001f;
+				speed += 0.0003f;
 				MoveTsunami ();
 				break;
 		}
@@ -41,7 +41,7 @@ public class WaveAI : MonoBehaviour {
 
 	void MoveTsunami()
 	{
-		Vector3 playerDir = this.playerTransform.right * this.playerScript.speed;
+		Vector3 playerDir = this.playerTransform.right * this.playerScript.m_playerStats.m_speed;
 		playerDir.y = 0;
 		playerDir.x -= speed;
 		transform.position -= playerDir * Time.deltaTime;

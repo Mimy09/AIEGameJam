@@ -12,11 +12,6 @@ public class Island : MonoBehaviour {
 		m_food = Random.value * 40;
 		m_parts = Mathf.RoundToInt( Random.value * 10);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 	void OnTriggerStay2D(Collider2D c){
 		if (c.tag == "Island") {
@@ -27,15 +22,20 @@ public class Island : MonoBehaviour {
 			}
 		}
 		if (c.tag == "Enemy") {
-			//if (c.transform.position.x > this.transform.position.x) {
-				m_food -= c.GetComponent<Enemy> ().GetDamage ();
-				m_parts--;
-				if (m_food < 0)
-					m_food = 0;
-				if (m_parts < 0)
-					m_parts = 0;
-				Destroy (c.gameObject);
-			//}
+			m_food -= c.GetComponent<Enemy> ().GetDamage ();
+			m_parts--;
+			if (m_food < 0) {
+				m_food = 0;
+			}
+			if (m_parts < 0) {
+				m_parts = 0;
+			}
+			if (m_parts <= 0 && m_food <= 0) {
+				foreach (Transform child in this.transform) {
+					child.gameObject.SetActive (true);
+				}
+			}
+			Destroy (c.gameObject);
 		}
 
 	}
