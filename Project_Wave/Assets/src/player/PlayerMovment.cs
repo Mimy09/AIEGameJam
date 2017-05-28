@@ -45,6 +45,7 @@ public class PlayerMovment : MonoBehaviour {
 			Vector3 pos = transform.position;
 			if (pos.y > 10.65f) pos.y = -10.3f;
 			if (pos.y < -10.35f) pos.y = 10.6f;
+			if (pos.y <-10.35f) pos.y =  10.6f;
 			transform.position = pos;
 		}
 	}
