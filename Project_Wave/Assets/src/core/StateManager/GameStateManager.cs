@@ -48,6 +48,8 @@ public class GameStateManager : MonoBehaviour{
 
 		}
 
+
+
 		// Update the current state
 		m_currentState.Update ();
 	}

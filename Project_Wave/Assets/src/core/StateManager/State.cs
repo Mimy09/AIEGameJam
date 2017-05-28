@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 namespace GameState {
@@ -7,9 +8,10 @@ namespace GameState {
 		InitState,
 		MenuState,
 		GameRunningState,
-		PauesState,
+		HelpState,
 		IslandGUIState,
 		PlayerUpgradeState,
+		EndState,
 		_NULL_
 	}
 	/************************************************************
@@ -51,35 +53,20 @@ namespace GameState {
 		public MenuState(){}
 		public override GAME_STATE GetSate(){ return GAME_STATE.MenuState; }
 
-		private GUIStyle title_style;
-		private GUIStyle title_sub_style;
-
-		private GUIStyle button_style; 
-
-		public override void OnBegin(){
-			title_style = new GUIStyle ();
-			title_style.fontSize = 72;
-			title_style.alignment = TextAnchor.MiddleCenter;
-
-			title_sub_style = new GUIStyle ();
-			title_sub_style.fontSize = 32;
-			title_sub_style.alignment = TextAnchor.MiddleCenter;
-
-			button_style = new GUIStyle ();
-			button_style.fontSize = 46;
-			button_style.alignment = TextAnchor.MiddleCenter;
-
-		}
-
 		public override void GUIUpdate (){
-			GUI.DrawTexture(new Rect (0, 0, Screen.width, Screen.height), Resources.Load("textures/UI/menu") as Texture2D, ScaleMode.StretchToFill);
+			GUI.DrawTexture(new Rect (0, 0, Screen.width, Screen.height), Resources.Load("textures/UI/titlescreen") as Texture2D, ScaleMode.StretchToFill);
 
-			GUI.Label (new Rect (0, (Screen.height / 2) - 97, Screen.width, 100), "Away've", title_style);
-			GUI.Label (new Rect (0, (Screen.height / 2) - 35, Screen.width, 100), "Tidal Terror", title_sub_style);
-
-			if (GUI.Button(new Rect(0, Screen.height  - 160, Screen.width, 100), "Start", button_style)){
-				Debug.Log ("MENU");
+			//START
+			if (GUI.Button(new Rect(0, Screen.height  - 230, Screen.width, 100), "", new GUIStyle())){
 				GameStateManager.SetState (new GameRunningState ());
+			}
+			// EXIT
+			if (GUI.Button(new Rect(Screen.width / 2, Screen.height  - 110, Screen.width / 2, 100), "", new GUIStyle())){
+				Application.Quit ();
+			}
+			//HELP
+			if (GUI.Button(new Rect(0, Screen.height  - 110, Screen.width / 2, 100), "", new GUIStyle())){
+				GameStateManager.SetState (new HelpState ());
 			}
 		}
 	}
@@ -101,6 +88,10 @@ namespace GameState {
 		public override void Update (){
 			if (Input.GetKeyDown (KeyCode.E)) {
 				GameStateManager.SetState (new PlayerUpgradeState ());
+			}
+			if (Input.GetKeyDown (KeyCode.Escape)) {
+				SceneManager.LoadScene ("Test");
+
 			}
 		}
 
@@ -146,7 +137,7 @@ namespace GameState {
 			GUI.Label (new Rect (60, 87, 200, 100), ((int)m_ps.m_food).ToString(), style);
 
 
-			GUI.Label (new Rect (60, 125, 200, 100), ((int)m_ps.m_speed).ToString(), style);
+			GUI.Label (new Rect (60, 125, 200, 100), (m_ps.m_speed).ToString("F2"), style);
 			GUI.Label (new Rect (60, 165, 200, 100), ((int)m_ps.m_parts).ToString(), style);
 
 			GUI.DrawTexture(new Rect(30, 10, 20, 20), Resources.Load("textures/UI/health") as Texture2D, ScaleMode.StretchToFill , true, 10.0F);
@@ -158,9 +149,9 @@ namespace GameState {
 
 
 
-			if (GUI.Button(new Rect(Screen.width - 100, Screen.height - 100, 100, 100), "Upgrade")){
+			/*if (GUI.Button(new Rect(Screen.width - 100, Screen.height - 100, 100, 100), "Upgrade")){
 				GameStateManager.SetState (new PlayerUpgradeState ());
-			}
+			}*/
 		}
 
 
@@ -168,9 +159,18 @@ namespace GameState {
 
 
 
-	public class PauesState : State{
-		public PauesState(){}
-		public override GAME_STATE GetSate(){ return GAME_STATE.PauesState; }
+	public class HelpState : State{
+		public HelpState(){}
+		public override GAME_STATE GetSate(){ return GAME_STATE.HelpState; }
+
+		public override void GUIUpdate (){
+			GUI.DrawTexture(new Rect (0, 0, Screen.width, Screen.height), Resources.Load("textures/UI/helpscreen") as Texture2D, ScaleMode.StretchToFill);
+
+			//HELP
+			if (GUI.Button(new Rect(0, Screen.height  - 60, Screen.width / 2, 60), "", new GUIStyle())){
+				GameStateManager.SetState (new MenuState ());
+			}
+		}
 	}
 
 
@@ -183,6 +183,21 @@ namespace GameState {
 			if (Input.GetKeyDown (KeyCode.E)) {
 				GameStateManager.SetState (new GameRunningState ());
 			}
+		}
+	}
+
+	public class EndState : State {
+		public EndState(){}
+		public override GAME_STATE GetSate(){ return GAME_STATE.EndState; }
+
+		public override void Update (){
+			if (Input.GetKeyDown (KeyCode.Escape)) {
+				SceneManager.LoadScene ("Test");
+			}
+		}
+
+		public override void GUIUpdate (){
+			GUI.DrawTexture(new Rect (Screen.width / 2 - 200,Screen.height / 2 - 50, 400, 100), Resources.Load("textures/UI/gameover") as Texture2D, ScaleMode.StretchToFill);
 		}
 	}
 

@@ -53,7 +53,7 @@ public class WaveAI : MonoBehaviour {
 
 		if (collider.tag == "Player")
 		{
-			SceneManager.LoadScene ("Test");
+			GameStateManager.SetState (new EndState ());
 		}
 	}
 }

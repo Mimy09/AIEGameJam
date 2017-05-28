@@ -51,6 +51,7 @@
      <Compile Include="Assets\generation\IslandGenerator.cs" />
      <Compile Include="Assets\generation\world\WorldGenerator.cs" />
      <Compile Include="Assets\generation\world\WorldObject.cs" />
+     <Compile Include="Assets\src\AudioManager.cs" />
      <Compile Include="Assets\src\core\SaveLoad.cs" />
      <Compile Include="Assets\src\core\StateManager\GameStateManager.cs" />
      <Compile Include="Assets\src\core\StateManager\State.cs" />
